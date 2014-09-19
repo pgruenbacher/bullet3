@@ -1,10 +1,11 @@
 'use strict';
+/*jshint unused:vars */
 angular.module('Bullet3.controllers', [])
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
   // Form data for the login modal
   $scope.loginData = {};
-
+  $scope.hideBackButton=true;
   // Create the login modal that we will use later
   $ionicModal.fromTemplateUrl('templates/login.html', {
     scope: $scope
@@ -15,7 +16,7 @@ angular.module('Bullet3.controllers', [])
   // Triggered in the login modal to close it
   $scope.closeLogin = function() {
     $scope.modal.hide();
-  },
+  };
 
   // Open the login modal
   $scope.login = function() {
@@ -31,7 +32,7 @@ angular.module('Bullet3.controllers', [])
     $timeout(function() {
       $scope.closeLogin();
     }, 1000);
-  }
+  };
 })
 
 .controller('PlaylistsCtrl', function($scope) {
@@ -46,4 +47,20 @@ angular.module('Bullet3.controllers', [])
 })
 
 .controller('PlaylistCtrl', function($scope, $stateParams) {
+})
+.controller('IntroCtrl', function($scope, $state, $ionicSlideBoxDelegate) {
+  // Called to navigate to the main app
+  $scope.startApp = function() {
+    $state.go('app.browse');
+  };
+  $scope.next = function() {
+    $ionicSlideBoxDelegate.next();
+  };
+  $scope.previous = function() {
+    $ionicSlideBoxDelegate.previous();
+  };
+  // Called each time the slide changes
+  $scope.slideChanged = function(index) {
+    $scope.slideIndex = index;
+  };
 });

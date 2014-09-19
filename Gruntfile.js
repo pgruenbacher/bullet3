@@ -33,7 +33,7 @@ module.exports = function (grunt) {
     ngconstant: {
       options: {
         space: '  ',
-        wrap: '"use strict";\n\n {%= __ngModule %}',
+        wrap: '/*jshint quotmark:double*/\n"use strict";\n\n{%= __ngModule %}',
         name: 'config',
         dest: '<%= yeoman.app %>/scripts/config.js'
       },

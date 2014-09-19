@@ -1,8 +1,9 @@
+<ion-view>
 <ion-side-menus>
 
   <ion-pane ion-side-menu-content>
     <ion-nav-bar class="bar-stable">
-      <ion-nav-back-button class="button-clear"><i class="icon ion-ios7-arrow-back"></i> Back</ion-nav-back-button>
+      <ion-nav-back-button hide-back-button="{{hideBackButton}}" class="button-clear"><i class="icon ion-ios7-arrow-back"></i> Back</ion-nav-back-button>
     </ion-nav-bar>
     <ion-nav-view name="menuContent" animation="slide-left-right"></ion-nav-view>
   </ion-pane>
@@ -29,3 +30,4 @@
     </ion-content>
   </ion-side-menu>
 </ion-side-menus>
+</ion-view>
