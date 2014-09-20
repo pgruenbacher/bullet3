@@ -6,7 +6,15 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('Bullet3', ['ionic', 'config', 'Bullet3.controllers','Bullet3.directives'])
+angular.module('Bullet3', [
+  'ionic',
+  'config',
+  'Bullet3.controllers',
+  'Bullet3.directives',
+  'Bullet3.services',
+  'Bullet3.filters',
+  'firebase'
+])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -49,25 +57,26 @@ angular.module('Bullet3', ['ionic', 'config', 'Bullet3.controllers','Bullet3.dir
       url: '/browse',
       views: {
         'menuContent' :{
-          templateUrl: 'templates/browse.html'
+          templateUrl: 'templates/browse.html',
+          controller: 'BrowseCtrl'
         }
       }
     })
-    .state('app.playlists', {
-      url: '/playlists',
+    .state('app.feed', {
+      url: '/event/:eventId',
       views: {
         'menuContent' :{
-          templateUrl: 'templates/playlists.html',
-          controller: 'PlaylistsCtrl'
+          templateUrl: 'templates/feed.html',
+          controller: 'FeedCtrl'
         }
       }
     })
 
-    .state('app.single', {
-      url: '/playlists/:playlistId',
+    .state('app.topic', {
+      url: '/feed/:topicId',
       views: {
         'menuContent' :{
-          templateUrl: 'templates/playlist.html',
+          templateUrl: 'templates/topic.html',
           controller: 'PlaylistCtrl'
         }
       }

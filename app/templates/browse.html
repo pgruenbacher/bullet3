@@ -3,6 +3,38 @@
     <button menu-toggle="left"class="button button-icon icon ion-navicon"></button>
   </ion-nav-buttons>
   <ion-content class="has-header">
-    <h1>Browse</h1>
+  	<ion-list>
+	    <ion-item ng-repeat="event in events" ng-click="enter(event.$id)">
+	    	<div class="event" >
+	    		<div class="banner">
+		    		<div class="image">
+		    			<img width="100%" ng-src="img/{{event.imageLeft}}">
+		    		</div>
+		    		<div class="headline">
+		    			<div class="title">
+			    			{{event.title}}
+			    		</div>
+			    		<div class="sub-title">
+			    			{{event.subTitle}}
+			    		</div>
+		    		</div>
+		    		<div class="image">
+		    			<img width="100%" ng-src="img/{{event.imageRight}}">
+		    		</div>
+	    		</div>
+	    		<div class="parameters">
+	    			<p>Current Users: {{event.noUsers}}</p>
+	    		</div>
+	    		<div class="context">
+		    		<div class="location">
+		    			{{event.location}}
+		    		</div>
+		    		<div class="time">
+		    			{{event.duration.start | dateTime}}-
+		    			{{event.duration.end | time }}
+		    		</div>
+	    		</div>
+		</ion-item>
+	</ion-list>
   </ion-content>
 </ion-view>

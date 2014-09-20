@@ -48,6 +48,19 @@ angular.module('Bullet3.controllers', [])
 
 .controller('PlaylistCtrl', function($scope, $stateParams) {
 })
+.controller('BrowseCtrl',function($scope,$state,EventsService){
+  $scope.events=EventsService.syncAll();
+  console.log($scope.events);
+  $scope.enter=function(id){
+    $state.go('app.feed',{
+      eventId:id
+    });
+  };
+})
+.controller('FeedCtrl',function($scope,$state,$stateParams,ChatService){
+  $scope.topics=ChatService.syncAll($stateParams.eventId);
+  console.log($scope.topics);
+})
 .controller('IntroCtrl', function($scope, $state, $ionicSlideBoxDelegate) {
   // Called to navigate to the main app
   $scope.startApp = function() {

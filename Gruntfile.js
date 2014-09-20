@@ -4,7 +4,8 @@
 var _ = require('lodash');
 var path = require('path');
 var cordova = require('cordova');
-var spawn = require('child_process').spawn;
+// var spawn = require('child_process').spawn;
+var spawn = require('win-spawn');
 
 module.exports = function (grunt) {
 
@@ -124,7 +125,8 @@ module.exports = function (grunt) {
     jshint: {
       options: {
         jshintrc: '.jshintrc',
-        reporter: require('jshint-stylish')
+        reporter: require('jshint-stylish'),
+        predef: [ 'Firebase' ]
       },
       all: [
         'Gruntfile.js',

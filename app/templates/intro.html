@@ -27,36 +27,51 @@
   <ion-slide-box on-slide-changed="slideChanged(index)">
     <!-- first slide -->
     <ion-slide>
-      <h3>Thank you for choosing BulletFeed!</h3>
+      <div class="box-white">
+        <h3>Thank you for choosing BulletFeed!</h3>
+      </div>
       <div class="logo"></div>
-      <p>
-        Gameday messaging. Instant stats.
-      </p>
-      <p>
-        Talk to everyone within a mile
-      </p>
+      <div class="box-white">
+        <p>
+          Gameday messaging. Instant stats.
+        </p>
+        <p>
+          Talk to everyone within a mile
+        </p>
+      </div>
     </ion-slide>
 
     <!-- second slide -->
     <ion-slide>
-      <h3>Using BulletFeed</h3>
+      <div class="box-white">
+        <h3>Using BulletFeed</h3>
+      </div>
       
-      <div class="list">
-        <h5>Just three steps:</h5>
-        <ol>
-          <li>Be awesome</li>
-          <li>Stay awesome</li>
-          <li>There is no step 3</li>
-        </ol>
+      <div class="list box-white">
+        <h5>Stuff to follow</h5>
+        <ul>
+          <li>This is a demo app, so we're limited in data usage</li>
+          <li>Only 50 people may be connected at a time, surplus connections will be shut off</li>
+          <li>Login or be anonymous</li>
+          <li>No crass language</li>
+          <li>Save to homescreen for future use</li>
+        </ul>
       </div>
     </ion-slide>
-
+    <ion-slide>
+      <div class="box-white">
+        <h1>For best experience, add this site to your homescreen!</h1>
+      </div>
+    </ion-slide>
     <!-- third slide -->
     <ion-slide>
-      <h3>Any questions?</h3>
-      <p>
-        Too bad!
-      </p>
+      <div class="box-white">
+        <h3>Contact Information</h3>
+        <p>
+          <a href="mailto:gruenbacher.1@osu.edu?Subject=BulletApp" data-rel="external">gruenbacher.1@osu.edu</a>
+        </p>
+      </div>
+      <div ng-click="startApp()" class="button button-assertive">Go to App!</div>
     </ion-slide>
   </ion-slide-box>
 </ion-view>
