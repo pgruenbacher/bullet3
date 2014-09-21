@@ -1,0 +1,21 @@
+<ion-content scroll="false" class="has-header">
+    <ion-item class="fixed-top">
+    {{parent.message}}
+    </ion-item>
+    <ion-scroll>
+      <ion-list can-swipe="true">
+        <ion-item class="item-icon-right item-text-wrap" ng-repeat="comment in comments">
+          {{comment.message}}
+          <!-- <i class="icon ion-chevron-right icon-accessory">Swipe</i> -->
+          <i class="icon icon-accessory ion-chevron-right"></i>
+          <ion-option-button class="button-balanced" ng-click="vote(comment.$id,1)"><i class="icon ion-thumbsup"></i></ion-option-button>
+          <ion-option-button class="button-assertive" ng-click="vote(comment.$id,-1)"><i class="icon ion-thumbsdown"></i></ion-option-button>
+        </ion-item>
+      </ion-list>
+    <ion-scroll>
+    <ion-footer-bar class="bar-stable">
+      <div class="buttons">
+        <button ng-click="createTopic()" class="button icon ion-paper-airplane">Add Comment</button>
+      </div>
+    </ion-footer-bar>
+</ion-content>

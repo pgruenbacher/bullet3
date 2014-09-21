@@ -2,7 +2,7 @@
   <ion-nav-buttons side="right">
     <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
   </ion-nav-buttons>
-  <ion-content scroll="false" class="has-header">
+  <ion-content can-scroll="false" class="has-header">
     <ion-item>
     Fixed item
     </ion-item>
@@ -20,7 +20,7 @@
   </ion-content>
   <ion-footer-bar class="bar-stable">
     <div class="buttons">
-      <comment-form-button save="saveComment" button="add comment"></comment-form-button>
+      <button ng-click="createTopic()" class="button icon ion-paper-airplane">Add Comment</button>
     </div>
   </ion-footer-bar>
 </ion-view>

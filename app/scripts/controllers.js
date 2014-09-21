@@ -46,20 +46,33 @@ angular.module('Bullet3.controllers', [])
   ];
 })
 
-.controller('PlaylistCtrl', function($scope, $stateParams) {
+.controller('TopicCtrl', function($scope, $stateParams,CommentService) {
+  $scope.topicId=$stateParams.topicId;
+  $scope.comments=CommentService.syncAll($scope.topicId);
+  console.log($scope.comments,$scope.topicId);
+  $scope.saveComment=function(comment){
+    CommentService.addItem($scope.comments,$scope.topicId,comment);
+  };
 })
 .controller('BrowseCtrl',function($scope,$state,EventsService){
   $scope.events=EventsService.syncAll();
-  console.log($scope.events);
   $scope.enter=function(id){
     $state.go('app.feed',{
       eventId:id
     });
   };
 })
-.controller('FeedCtrl',function($scope,$state,$stateParams,ChatService){
-  $scope.topics=ChatService.syncAll($stateParams.eventId);
+.controller('FeedCtrl',function($scope,$state,$stateParams,$ionicModal,TopicService,$ionicListDelegate){
+  $scope.eventId=$stateParams.eventId;
+  $scope.topics=TopicService.syncAll($scope.eventId);
   console.log($scope.topics);
+  /*Create Topic Modal*/
+  $scope.saveTopic=function(topic){
+    TopicService.addItem($scope.topics,$scope.eventId,topic);
+  };
+  $scope.vote=function(id,value){
+    $ionicListDelegate.closeOptionButtons();
+  };
 })
 .controller('IntroCtrl', function($scope, $state, $ionicSlideBoxDelegate) {
   // Called to navigate to the main app

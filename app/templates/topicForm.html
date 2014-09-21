@@ -1,0 +1,17 @@
+<ion-modal-view>
+	<ion-header-bar class="bar-positive">
+	  	<h1 class="title">Create Topic</h1>
+	  	<div class="buttons">
+      		<button class="button icon ion-close-round" ng-click="closeTopicModal()">Close</button>
+		</div>
+	</ion-header-bar>
+	<ion-content>
+		<label for="message">Message:</label>
+	 	<textarea ng-model="topic.message" id="message"></textarea>
+	 	<select>
+		 	<option>Public</option>
+		 	<option>Private</option>
+	 	</select>
+	 	<button ng-click="submitTopic(topic)" class="button button-block button-balanced">Submit</button>
+	</ion-content>
+</ion-modal-view>

@@ -34,4 +34,54 @@ angular.module('Bullet3.directives',[])
         });
       }
     };
+  })
+  .directive('commentSection',function(){
+    return{
+      restrict:'E',
+      templateUrl:'commentSection',
+      transclude:true,
+      controller:function(){
+        
+      }
+    };
+  })
+  .directive('commentFormButton',function($ionicModal,TopicService,CommentService){
+    return{
+      restrict:'E',
+      template:'<button ng-click="createTopic()" class="button icon ion-paper-airplane">{{button}}</button>',
+      scope:{
+        save:'&',
+        button: '@'
+      },
+      link:function(scope,element,attrs){
+        $ionicModal.fromTemplateUrl('templates/topicForm.html', {
+          scope: scope,
+          animation: 'slide-in-up',
+          focusFirstInput: true,
+          backdropClickToClose: true
+        }).then(function(modal) {
+          scope.topicModal = modal;
+        });
+        scope.openTopicModal = function() {
+          scope.topicModal.show();
+        };
+        scope.closeTopicModal = function() {
+          scope.topicModal.hide();
+        };
+        //Cleanup the modal when we're done with it!
+        scope.$on('$destroy', function() {
+          scope.topicModal.remove();
+        });
+
+        scope.createTopic=function(){
+          console.log('open');
+          scope.openTopicModal();
+        };
+        scope.submitTopic=function(topic){
+          var func=scope.save();
+          func(topic);
+          scope.closeTopicModal();
+        };
+      }
+    };
   });

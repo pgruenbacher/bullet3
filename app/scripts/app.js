@@ -71,17 +71,16 @@ angular.module('Bullet3', [
         }
       }
     })
-
     .state('app.topic', {
-      url: '/feed/:topicId',
+      url: '/event/:eventId/topic/:topicId',
       views: {
         'menuContent' :{
           templateUrl: 'templates/topic.html',
-          controller: 'PlaylistCtrl'
+          controller: 'TopicCtrl'
         }
       }
     });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/playlists');
+  $urlRouterProvider.otherwise('/app/browse');
 });
 
