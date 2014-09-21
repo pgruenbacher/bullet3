@@ -49,6 +49,14 @@ angular.module('Bullet3.services',[])
         //Add author to here as well
       });
     },
+    get:function(id){
+      return $firebase(_ref2.child(id)).$asObject();
+    },
+    vote:function(id,value){
+      _ref2.child(id+'/votes').transaction(function(votes){
+        return votes+value;
+      });
+    },
     saveItem:function(){
 
     },
@@ -82,6 +90,11 @@ angular.module('Bullet3.services',[])
         var id=ref.name();
         _ref.child(topicId+'/comments/'+id).set(true);
         //Add author to here as well
+      });
+    },
+    vote:function(id,value){
+      _ref2.child(id+'/votes').transaction(function(votes){
+        return votes+value;
       });
     },
     saveItem:function(){

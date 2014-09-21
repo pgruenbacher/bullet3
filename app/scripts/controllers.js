@@ -46,12 +46,17 @@ angular.module('Bullet3.controllers', [])
   ];
 })
 
-.controller('TopicCtrl', function($scope, $stateParams,CommentService) {
+.controller('TopicCtrl', function($scope, $stateParams,TopicService,CommentService,$ionicListDelegate) {
   $scope.topicId=$stateParams.topicId;
+  $scope.topic=TopicService.get($scope.topicId);
   $scope.comments=CommentService.syncAll($scope.topicId);
   console.log($scope.comments,$scope.topicId);
   $scope.saveComment=function(comment){
     CommentService.addItem($scope.comments,$scope.topicId,comment);
+  };
+  $scope.vote=function(id,value){
+    CommentService.vote(id,value);
+    $ionicListDelegate.closeOptionButtons();
   };
 })
 .controller('BrowseCtrl',function($scope,$state,EventsService){
@@ -65,12 +70,12 @@ angular.module('Bullet3.controllers', [])
 .controller('FeedCtrl',function($scope,$state,$stateParams,$ionicModal,TopicService,$ionicListDelegate){
   $scope.eventId=$stateParams.eventId;
   $scope.topics=TopicService.syncAll($scope.eventId);
-  console.log($scope.topics);
   /*Create Topic Modal*/
   $scope.saveTopic=function(topic){
     TopicService.addItem($scope.topics,$scope.eventId,topic);
   };
   $scope.vote=function(id,value){
+    TopicService.vote(id,value);
     $ionicListDelegate.closeOptionButtons();
   };
 })

@@ -13,4 +13,21 @@ angular.module('Bullet3.filters',[])
 		var _date = $filter('date')(new Date(input),'h:mm a');
 		return _date;
 	};
+})
+.filter('keySize',function(){
+	return function(obj){
+		if(typeof obj ==='undefined'){
+			return 0;
+		}
+		return Object.keys(obj).length;
+	};
+})
+.filter('votes',function(){
+	return function(i){
+		console.log(i);
+		if(typeof i==='undefined'){
+			return 0;
+		}
+		return i;
+	};
 });
