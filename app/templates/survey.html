@@ -1,0 +1,132 @@
+<ion-view title="">
+  <ion-nav-bar>
+    <ion-nav-buttons side="left">
+      <button class="button button-positive button-clear no-animation"
+        ng-click="previous()" ng-if="slideIndex > 0">
+        Previous
+      </button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right"> 
+      <button class="button button-positive button-clear no-animation"
+        ng-click="next()" ng-if="slideIndex != 7">
+        Next
+      </button>
+      <button class="button button-positive button-clear no-animation"
+        ng-click="startApp()" ng-if="slideIndex == 7">
+        Complete Survey
+      </button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+  <!-- create the slidebox. Listen for on-slide-changed events we will wire up later. -->
+  <ion-slide-box on-slide-changed="slideChanged(index)">
+    <!-- first slide -->
+    <ion-slide class="survey-slide">
+      <div class="prompt">
+        <p>Bullet Feed is an app that will provide simultaneous messages, stats, and updates to your phone in the context of a specific event or location you are participating in. It will be a service tailored to the needs of sports venues and event coordinators</p>
+      </div>
+      <div class="question">
+        <h2>Does such an app sound appealing?</h2>
+      </div>
+      <ion-radio class="affirmative" ng-model="question1" ng-value="1">Yes <i class="icon ion-happy"></i></ion-radio>
+      <ion-radio class="undecided" ng-model="question1" ng-value="0">Undecided</ion-radio>
+      <ion-radio class="negative" ng-model="question1" ng-value="-1">No <i class="icon ion-sad"></i></ion-radio>
+    </ion-slide>
+    <!-- second slide -->
+    <ion-slide class="survey-slide">
+      <div class="prompt">
+        <p>Bullet Feed will need to prioritize. At the moment we expect to at least do a general chatboard that will let people talk with other spectators or friends, as well as event notifications created by the event coordinators. We may also do event stats, but this will be difficult</p>
+      </div>
+      <div class="question">
+        <h2>Which general features are important?</h2>
+      </div>
+      <ion-checkbox ng-model="chatBoard">ChatBoard
+        <i class="icon ion-mic-a"></i>
+      </ion-checkbox>
+      <ion-checkbox ng-model="eventNotifications">Event Notifications
+        <i class="icon ion-speakerphone"></i>
+      </ion-checkbox>
+      <ion-checkbox ng-model="EventStats">Real-time event stats
+        <i class="icon ion-arrow-graph-up-right"></i>
+      </ion-checkbox>
+    </ion-slide>
+    <ion-slide class="survey-slide">
+      <div class="prompt">
+        <p>In regards to the chat board, we can offer a friends filter and the opportunity to create secret passwords if you are an event coordinator. </p>
+      </div>
+      <div class="question">
+        <h2>Which message features are important?</h2>
+      </div>
+      <ion-checkbox ng-model="Anonymous">Anonymous
+        <i class="icon ion-chatboxes"></i>
+      </ion-checkbox>
+      <ion-checkbox ng-model="FriendsFilter">Friends Filter
+        <i class="icon ion-person-stalker"></i>
+      </ion-checkbox>
+      <ion-checkbox ng-model="SecretPassword">Secret Passwords
+        <i class="icon ion-locked"></i>
+      </ion-checkbox>
+    </ion-slide>
+    <ion-slide class="survey-slide">
+      <div class="prompt">
+        <p>In regards to signing in, we can do a number of social accounts.</p>
+      </div>
+      <div class="question">
+        <h2>Which login accounts are important?</h2>
+      </div>
+      <ion-checkbox ng-model="FacebookLogin">Facebook Login
+        <i class="icon ion-social-facebook"></i>
+      </ion-checkbox>
+      <ion-checkbox ng-model="TwitterLogin">Twitter Login
+        <i class="icon ion-social-twitter-outline"></i>
+      </ion-checkbox>
+      <ion-checkbox ng-model="EmailLogin">Email Login
+        <i class="icon ion-ios7-locked"></i>
+      </ion-checkbox>
+    </ion-slide>
+    <ion-slide class="survey-slide">
+      <div class="prompt">
+        <p>We can develop for android, iphone, but not windows</p>
+      </div>
+      <div class="question">
+        <h2>Which phone platform are you using?</h2>
+      </div>
+      <ion-radio ng-model="iphone" ng-value="1">Iphone <i class="icon ion-social-android"></i></ion-radio>
+      <ion-radio ng-model="android" ng-value="0">Android <i class="icon ion-social-apple"></i></ion-radio>
+    </ion-slide>
+    <ion-slide class="survey-slide">
+      <div class="prompt">
+        <p>Possible applications for this app can include event coordination for conferences, sports gamedays, and conventions as ways for event planners to coordinate attendees, update schedules, or perform similar attendee feedback similar to this survey</p>
+      </div>
+      <div class="question">
+        <h2>What events do you think we should tailor to?</h2>
+      </div>
+      <ion-checkbox ng-model="Gamedays">Gamedays</ion-checkbox>
+      <ion-checkbox ng-model="Conferences">Conferences</ion-checkbox>
+      <ion-checkbox ng-model="Conventions">Conventions</ion-checkbox>
+      <ion-checkbox ng-model="OtherEvent">Other?</ion-checkbox>
+    </ion-slide>
+    <ion-slide class="survey-slide">
+      <div class="prompt">
+        <p>Performance of the app at large events relies on the ability of the app to quickly send data with poor network connections already existing. How quickly did the app load after you used the link?</p>
+      </div>
+      <div class="question">
+        <h2>How does the app perform</h2>
+      </div>
+      <ion-checkbox ng-model="messagesDownload">messages load fast?</ion-checkbox>
+      <ion-checkbox ng-model="siteDownload">app load fast?</ion-checkbox>
+      </div>
+    </ion-slide>
+    <ion-slide class="survey-slide">
+      <div class="prompt">
+        <p></p>
+      </div>
+      <div class="question">
+        <h2>Would you see yourself using such an app as?</h2>
+      </div>
+      <ion-checkbox ng-model="eventCoordinator">as a Event Coordinator</ion-checkbox>
+      <ion-checkbox ng-model="sportsFan">as a Sports Fan</ion-checkbox>
+      <ion-checkbox ng-model="attendee">as an event attendee</ion-checkbox>
+      </div>
+    </ion-slide>
+  </ion-slide-box>
+</ion-view>

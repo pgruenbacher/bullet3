@@ -1,12 +1,22 @@
-<ion-view title="Chat">
+<ion-view title="Chat {{searchOn}}">
   <ion-nav-buttons side="right">
     <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
   </ion-nav-buttons>
-  <ion-content class="has-header">
+  <dynamic-banner search-bar="search" search-toggle="searchToggle()" search-on="{{searchOn}}"></dynamic-banner>
+  <ion-content class="has-header" ng-class="{'has-subheader':searchOn}">
     <ion-list can-swipe="true">
-      <ion-item class="item-icon-right item-text-wrap" ng-repeat="topic in topics" href="#/app/event/{{eventId}}/topic/{{topic.$id}}">
+      <ion-item class="item-icon-right item-text-wrap collection-items" 
+      collection-repeat="topic in topics | orderBy:orderF:true| searchFilter:search"
+      collection-item-height="itemHeight.height"
+      collection-item-width="'100%'"
+      ng-style="itemHeight"
+      href="#/app/event/{{eventId}}/topic/{{topic.$id}}">
         {{topic.message}}
-        <div class="votes"><span>{{topic.votes|votes}}</span> votes <span>{{topic.comments|keySize}}</span> Comments</div>
+        <div class="votes">
+          <span>{{topic.votes|votes}}</span> votes 
+          <span>{{topic.comments|keySize}}</span> Comments
+          <span>{{topic.timestamp|time}}</span>
+        </div>
         <i class="icon icon-accessory ion-chevron-right"></i>
         <ion-option-button class="button-balanced" ng-click="vote(topic.$id,1)"><i class="icon ion-thumbsup"></i></ion-option-button>
         <ion-option-button class="button-assertive" ng-click="vote(topic.$id,-1)"><i class="icon ion-thumbsdown"></i></ion-option-button>
@@ -16,6 +26,12 @@
   <ion-footer-bar class="bar-stable">
     <div class="buttons">
       <comment-form-button save="saveTopic" button="add topic"></comment-form-button>
+    </div>
+    <div class="filters-bar">
+      <input id="trending" type="radio" ng-model="orderBar" value="votes">
+      <label for="trending">Trending</label>
+      <input id="recent" type="radio" ng-model="orderBar" value="timestamp">
+      <label for="recent">Recent</label>
     </div>
   </ion-footer-bar>
 </ion-view>

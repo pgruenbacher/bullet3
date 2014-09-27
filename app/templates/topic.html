@@ -1,26 +1,32 @@
-<ion-view title="Comment">
+<ion-view title="{{topic.message}}">
   <ion-nav-buttons side="right">
     <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
   </ion-nav-buttons>
-  <ion-content scroll="false" class="has-header">
-    <ion-item>
-    {{topic.message}}
-    </ion-item>
-    <ion-scroll>
-      <ion-list can-swipe="true">
-        <ion-item class="item-icon-right item-text-wrap" ng-repeat="comment in comments">
-          {{comment.message}}
-          <div class="votes"><span>{{comment.votes|votes}}</span> votes</div>
-          <i class="icon icon-accessory ion-chevron-right"></i>
-          <ion-option-button class="button-balanced" ng-click="vote(comment.$id,1)"><i class="icon ion-thumbsup"></i></ion-option-button>
-          <ion-option-button class="button-assertive" ng-click="vote(comment.$id,-1)"><i class="icon ion-thumbsdown"></i></ion-option-button>
-        </ion-item>
-      </ion-list>
-    <ion-scroll>
+  <dynamic-banner search-bar="search" search-toggle="searchToggle()" search-on="{{searchOn}}"></dynamic-banner>
+  <ion-content class="has-header has-subheader">
+    <ion-list can-swipe="true">
+      <ion-item class="item-icon-right item-text-wrap collection-items" 
+        collection-repeat="comment in comments|orderBy:orderF:true | searchFilter:search"
+        collection-item-height="itemHeight.height"
+        collection-item-width="'100%'"
+        ng-style="itemHeight">
+        {{comment.message}}
+        <div class="votes"><span>{{comment.votes|votes}}</span> votes <span>{{comment.timestamp|time}}</span></div>
+        <i class="icon icon-accessory ion-chevron-right"></i>
+        <ion-option-button class="button-balanced" ng-click="vote(comment.$id,1)"><i class="icon ion-thumbsup"></i></ion-option-button>
+        <ion-option-button class="button-assertive" ng-click="vote(comment.$id,-1)"><i class="icon ion-thumbsdown"></i></ion-option-button>
+      </ion-item>
+    </ion-list>
   </ion-content>
   <ion-footer-bar class="bar-stable">
     <div class="buttons">
       <comment-form-button save="saveComment" button="add comment"></comment-form-button>
+    </div>
+    <div class="filters-bar">
+      <input id="trending" type="radio" ng-model="orderBar" value="votes">
+      <label for="trending">Trending</label>
+      <input id="recent" type="radio" ng-model="orderBar" value="timestamp">
+      <label for="recent">Recent</label>
     </div>
   </ion-footer-bar>
 </ion-view>

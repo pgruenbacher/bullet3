@@ -43,7 +43,6 @@ angular.module('Bullet3', [
       templateUrl: 'templates/menu.html',
       controller: 'AppCtrl'
     })
-
     .state('app.search', {
       url: '/search',
       views: {
@@ -52,13 +51,21 @@ angular.module('Bullet3', [
         }
       }
     })
-
     .state('app.browse', {
       url: '/browse',
       views: {
         'menuContent' :{
           templateUrl: 'templates/browse.html',
           controller: 'BrowseCtrl'
+        }
+      }
+    })
+    .state('app.survey',{
+      url:'/survey',
+      views:{
+        'menuContent':{
+          templateUrl:'templates/survey.html',
+          controller:'SurveyCtrl'
         }
       }
     })
@@ -81,6 +88,6 @@ angular.module('Bullet3', [
       }
     });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/browse');
+  $urlRouterProvider.otherwise('/intro');
 });
 

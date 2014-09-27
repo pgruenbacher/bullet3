@@ -24,7 +24,7 @@ module.exports = function (grunt) {
       app: 'app',
       scripts: 'scripts',
       styles: 'styles',
-      images: 'images'
+      images: 'img'
     },
 
     // Environment Variables for Angular App
@@ -42,7 +42,8 @@ module.exports = function (grunt) {
         constants: {
           ENV: {
             name: 'development',
-            FB: 'https://bullet.firebaseio.com/'
+            FB: 'https://bullet.firebaseio.com/',
+            iHEIGHT:80
           }
         }
       },
@@ -50,7 +51,8 @@ module.exports = function (grunt) {
         constants: {
           ENV: {
             name: 'production',
-            FB: 'https://bullet.firebaseio.com/'
+            FB: 'https://bullet.firebaseio.com/',
+            iHEIGHT:80
           }
         }
       }
@@ -274,7 +276,7 @@ module.exports = function (grunt) {
           cwd: '<%= yeoman.app %>',
           dest: 'www',
           src: [
-            'images/**/*.{png,jpg,jpeg,gif,webp,svg}',
+            'img/**/*.{png,jpg,jpeg,gif,webp,svg}',
             '*.html',
             'templates/**/*.html',
             'fonts/*'

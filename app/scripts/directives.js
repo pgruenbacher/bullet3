@@ -1,5 +1,5 @@
 'use strict';
-/*jshint unused:vars*/
+/*jshint unused: vars*/
 angular.module('Bullet3.directives',[])
   .directive('slidingBackground', function () {
     return {
@@ -35,13 +35,20 @@ angular.module('Bullet3.directives',[])
       }
     };
   })
-  .directive('commentSection',function(){
+  .directive('dynamicBanner',function(){
     return{
+      templateUrl:'templates/dynamicBanner.html',
+      scope:{
+        search:'=searchBar',
+        searchOn:'@',
+        searchToggle:'&'
+      },
       restrict:'E',
-      templateUrl:'commentSection',
-      transclude:true,
-      controller:function(){
-        
+      link:function(scope,element,attrs){
+        scope.clear=function(){
+          scope.search='';
+          scope.searchToggle(false);
+        };
       }
     };
   })

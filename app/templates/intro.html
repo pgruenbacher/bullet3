@@ -26,45 +26,55 @@
   <!-- create the slidebox. Listen for on-slide-changed events we will wire up later. -->
   <ion-slide-box on-slide-changed="slideChanged(index)">
     <!-- first slide -->
-    <ion-slide>
+    <ion-slide class="intro-slide">
       <div class="box-white">
         <h3>Thank you for choosing BulletFeed!</h3>
       </div>
-      <div class="logo"></div>
+      <div class="logo">
+        <img width="100%" src="img/bulletLogoOrange.svg"></img>
+      </div>
       <div class="box-white">
         <p>
           Gameday messaging. Instant stats.
         </p>
         <p>
-          Talk to everyone within a mile
+          Talk to everyone within 2 miles
+        </p>
+        <p>
+          Event Coordination
         </p>
       </div>
     </ion-slide>
 
     <!-- second slide -->
-    <ion-slide>
+    <ion-slide class="intro-slide">
       <div class="box-white">
-        <h3>Using BulletFeed</h3>
+        <h3>Disclaimer!</h3>
       </div>
       
       <div class="list box-white">
-        <h5>Stuff to follow</h5>
+        <h4>Pre-alpha: 1 week Old</h4>
         <ul>
           <li>This is a demo app, so we're limited in data usage</li>
-          <li>Only 50 people may be connected at a time, surplus connections will be shut off</li>
-          <li>Login or be anonymous</li>
-          <li>No crass language</li>
-          <li>Save to homescreen for future use</li>
+          <li>Only 50 people may be connected at a time simultaneously</li>
+          <li>I've only had one week since starting the app, be gentle</li>
+          <li>Please no bad language</li>
         </ul>
       </div>
     </ion-slide>
-    <ion-slide>
+    <ion-slide class="intro-slide">
       <div class="box-white">
-        <h1>For best experience, add this site to your homescreen!</h1>
+        <p><span style="font-weight:bold">Before:</span> For full-screen view, add this site to your homescreen!
+          <i style="color:blue" class="icon ion-ios7-upload-outline"></i>
+        </p>
+        <p>
+          <span style="font-weight:bold">After:</span>
+          Fill out a survey in the menu to give your thoughts
+        </p>
       </div>
     </ion-slide>
     <!-- third slide -->
-    <ion-slide>
+    <ion-slide class="intro-slide">
       <div class="box-white">
         <h3>Contact Information</h3>
         <p>

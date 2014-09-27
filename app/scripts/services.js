@@ -25,6 +25,8 @@ angular.module('Bullet3.services',[])
 
   var _url2=ENV.FB+'topicsList';
   var _ref2=new Firebase(_url2);
+  var topicsCache;
+  var eventCache;
   return{
     trending:function(){
 
@@ -35,14 +37,24 @@ angular.module('Bullet3.services',[])
     syncAll:function(eventName){
       //var topics= $firebase(_ref.child(eventName).child('topics'));
       //var eventTopics=$firebase(_ref.child(eventName).child('topics'));
-      var topics=Firebase.util.intersection(_ref.child(eventName+'/topics'),_ref2);
-      return $firebase(topics).$asArray();
+      var topics=Firebase.util.intersection({
+        ref:_ref.child(eventName+'/topics')
+      },{
+        ref:_ref2
+      });
+      if(typeof topicsCache !=='undefined' && eventName === eventCache){
+        console.log('cache');
+        eventCache=eventName;
+        return topicsCache;
+      }
+      topicsCache=$firebase(topics).$asArray();
+      eventCache=eventName;
+      return topicsCache;
     },
     addItem: function(topics,eventId,topic){
       topic.author='pgruenbacher';
-      topic.$priority=0;
       topic.timestamp=new Date().getTime();
-      topic.noComments=0;
+      topic.votes=0;
       topics.$add(topic).then(function(ref){
         var id=ref.name();
         _ref.child(eventId+'/topics/'+id).set(true);
@@ -85,7 +97,6 @@ angular.module('Bullet3.services',[])
       comment.author='pgruenbacher';
       comment.$priority=0;
       comment.timestamp=new Date().getTime();
-      comment.noComments=0;
       comments.$add(comment).then(function(ref){
         var id=ref.name();
         _ref.child(topicId+'/comments/'+id).set(true);
