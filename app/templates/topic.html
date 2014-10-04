@@ -3,7 +3,7 @@
     <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
   </ion-nav-buttons>
   <dynamic-banner search-bar="search" search-toggle="searchToggle()" search-on="{{searchOn}}"></dynamic-banner>
-  <ion-content class="has-header has-subheader">
+  <ion-content class="has-header" ng-class="{'has-subheader':searchOn}">
     <ion-list can-swipe="true">
       <ion-item class="item-icon-right item-text-wrap collection-items" 
         collection-repeat="comment in comments|orderBy:orderF:true | searchFilter:search"

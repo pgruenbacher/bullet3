@@ -13,7 +13,11 @@ angular.module('Bullet3', [
   'Bullet3.directives',
   'Bullet3.services',
   'Bullet3.filters',
-  'firebase'
+  'firebase',
+  'firebase.utils',
+  'AuthenticationService',
+  'Bullet3.accountControllers',
+  'stateSecurity'
 ])
 
 .run(function($ionicPlatform) {
@@ -42,6 +46,28 @@ angular.module('Bullet3', [
       abstract: true,
       templateUrl: 'templates/menu.html',
       controller: 'AppCtrl'
+      
+    })
+    .state('app.account',{
+      url:'/account',
+      views:{
+        'menuContent':{
+          templateUrl:'templates/account.html',
+          controller:'AccountCtrl'
+        }
+      },
+      data:{
+        authRequired: true
+      },
+      resolve: {
+        // forces the page to wait for this promise to resolve before controller is loaded
+        // the controller can then inject `user` as a dependency. This could also be done
+        // in the controller, but this makes things cleaner (controller doesn't need to worry
+        // about auth status or timing of displaying its UI components)
+        user: ['simpleLogin', function(simpleLogin) {
+          return simpleLogin.getUser();
+        }]
+      }
     })
     .state('app.search', {
       url: '/search',
@@ -90,4 +116,3 @@ angular.module('Bullet3', [
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/intro');
 });
-

@@ -43,7 +43,9 @@ module.exports = function (grunt) {
           ENV: {
             name: 'development',
             FB: 'https://bullet.firebaseio.com/',
-            iHEIGHT:80
+            iHEIGHT:80,
+            loginStateName: 'intro',
+            alreadyLoggedInStateName:'app.survey'
           }
         }
       },
@@ -52,7 +54,9 @@ module.exports = function (grunt) {
           ENV: {
             name: 'production',
             FB: 'https://bullet.firebaseio.com/',
-            iHEIGHT:80
+            iHEIGHT:80,
+            loginStateName: 'intro',
+            alreadyLoggedInStateName:'app.survey'
           }
         }
       }
@@ -279,7 +283,8 @@ module.exports = function (grunt) {
             'img/**/*.{png,jpg,jpeg,gif,webp,svg}',
             '*.html',
             'templates/**/*.html',
-            'fonts/*'
+            'fonts/*',
+            'bower_components/firebase-util-master/firebase-util-master/dist/firebase-util.min.js'
           ]
         }, {
           expand: true,

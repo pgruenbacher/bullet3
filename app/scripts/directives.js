@@ -1,8 +1,11 @@
 'use strict';
 /*jshint unused: vars*/
 angular.module('Bullet3.directives',[])
-  .directive('slidingBackground', function () {
+  .directive('slidingBackground', function ($interval) {
     return {
+      scope:{
+        currentStateIs:'@'
+      },
       template: '<div class="sliding-background"></div>',
       restrict: 'A',
       link: function postLink(scope, element, attrs) {
@@ -14,7 +17,14 @@ angular.module('Bullet3.directives',[])
           pos += 1;
           child.css({backgroundPosition: pos + 'px '+0+'px'});
         }
-        setInterval(bgScroll, speed);
+        // start the UI update process; save the timeoutId for canceling
+        var timeoutId = $interval(function() {
+          bgScroll(); // update DOM
+        }, speed);
+        element.on('$destroy', function() {
+          console.log('destroy dom');
+          $interval.cancel(timeoutId);
+        });
       }
     };
   })

@@ -13,17 +13,17 @@
     </header>
     <ion-content class="has-header">
       <ion-list>
-        <ion-item nav-clear menu-close ng-click="login()">
-          Login
+        <ion-item nav-clear class="item-icon-right" menu-close href="#/app/account">
+          Account <i class="icon icon-accesory ion-person"></i>
         </ion-item>
-        <ion-item nav-clear menu-close ng-click="searchToggle(true)">
-          Search
+        <ion-item nav-clear menu-close class="item-icon-right" ng-click="searchToggle(true)" ng-show="checkState()">
+          Search <i class="icon icon-accesory ion-search"></i>
         </ion-item>
-        <ion-item nav-clear menu-close href="#/app/browse">
-          Browse
+        <ion-item nav-clear menu-close class="item-icon-right" href="#/app/browse">
+          Browse <i class="icon icon-accesory ion-ios7-home"></i>
         </ion-item>
-        <ion-item nav-clear menu-close href="#/app/survey">
-          Survey
+        <ion-item nav-clear class="item-icon-right" menu-close href="#/app/survey">
+          Survey <i class="icon icon-accesory ion-clipboard"></i>
         </ion-item>
         <ion-item nav-clear>
         Friends only Filter

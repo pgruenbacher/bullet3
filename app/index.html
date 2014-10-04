@@ -42,7 +42,6 @@
     <script src="bower_components/firebase/firebase.js"></script>
     <script src="bower_components/firebase-simple-login/firebase-simple-login.js"></script>
     <script src="bower_components/angularfire/dist/angularfire.min.js"></script>
-    <script src="bower_components/firebase-util/firebase-util.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -57,6 +56,19 @@
         <script src="scripts/directives.js"></script>
         <script src="scripts/services.js"></script>
         <script src="scripts/filters.js"></script>
+        <script src="scripts/firebase.utils.js"></script>
+        <script src="scripts/authenticationService.js"></script>
+        <script src="scripts/accountCtrl.js"></script>
+        <script src="scripts/routerSecurity.js"></script>
         <!-- endbuild -->
+        <script src="bower_components/firebase-util-master/firebase-util-master/dist/firebase-util.min.js"></script>
+        <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+          ga('create', 'UA-54832258-1', 'auto');
+          ga('send', 'pageview');
+        </script>
 </body>
 </html>

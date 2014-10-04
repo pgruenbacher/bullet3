@@ -1,5 +1,4 @@
-<ion-view title="">
-  <ion-nav-bar>
+<ion-view title="{{slideIndex+1}}/9">
     <ion-nav-buttons side="left">
       <button class="button button-positive button-clear no-animation"
         ng-click="previous()" ng-if="slideIndex > 0">
@@ -8,15 +7,14 @@
     </ion-nav-buttons>
     <ion-nav-buttons side="right"> 
       <button class="button button-positive button-clear no-animation"
-        ng-click="next()" ng-if="slideIndex != 7">
+        ng-click="next()" ng-if="slideIndex !== 8">
         Next
       </button>
       <button class="button button-positive button-clear no-animation"
-        ng-click="startApp()" ng-if="slideIndex == 7">
+        ng-click="complete()" ng-if="slideIndex === 8">
         Complete Survey
       </button>
     </ion-nav-buttons>
-  </ion-nav-bar>
   <!-- create the slidebox. Listen for on-slide-changed events we will wire up later. -->
   <ion-slide-box on-slide-changed="slideChanged(index)">
     <!-- first slide -->
@@ -27,9 +25,9 @@
       <div class="question">
         <h2>Does such an app sound appealing?</h2>
       </div>
-      <ion-radio class="affirmative" ng-model="question1" ng-value="1">Yes <i class="icon ion-happy"></i></ion-radio>
-      <ion-radio class="undecided" ng-model="question1" ng-value="0">Undecided</ion-radio>
-      <ion-radio class="negative" ng-model="question1" ng-value="-1">No <i class="icon ion-sad"></i></ion-radio>
+      <ion-radio ng-model="survey.question1" ng-value="1">Yes <i class="icon ion-happy"></i></ion-radio>
+      <ion-radio ng-model="survey.question1" ng-value="0">Undecided</ion-radio>
+      <ion-radio ng-model="survey.question1" ng-value="-1">No <i class="icon ion-sad"></i></ion-radio>
     </ion-slide>
     <!-- second slide -->
     <ion-slide class="survey-slide">
@@ -39,13 +37,13 @@
       <div class="question">
         <h2>Which general features are important?</h2>
       </div>
-      <ion-checkbox ng-model="chatBoard">ChatBoard
+      <ion-checkbox ng-model="survey.chatBoard">ChatBoard
         <i class="icon ion-mic-a"></i>
       </ion-checkbox>
-      <ion-checkbox ng-model="eventNotifications">Event Notifications
+      <ion-checkbox ng-model="survey.eventNotifications">Event Notifications
         <i class="icon ion-speakerphone"></i>
       </ion-checkbox>
-      <ion-checkbox ng-model="EventStats">Real-time event stats
+      <ion-checkbox ng-model="survey.EventStats">Real-time event stats
         <i class="icon ion-arrow-graph-up-right"></i>
       </ion-checkbox>
     </ion-slide>
@@ -56,13 +54,13 @@
       <div class="question">
         <h2>Which message features are important?</h2>
       </div>
-      <ion-checkbox ng-model="Anonymous">Anonymous
+      <ion-checkbox ng-model="survey.Anonymous">Anonymous
         <i class="icon ion-chatboxes"></i>
       </ion-checkbox>
-      <ion-checkbox ng-model="FriendsFilter">Friends Filter
+      <ion-checkbox ng-model="survey.FriendsFilter">Friends Filter
         <i class="icon ion-person-stalker"></i>
       </ion-checkbox>
-      <ion-checkbox ng-model="SecretPassword">Secret Passwords
+      <ion-checkbox ng-model="survey.SecretPassword">Secret Passwords
         <i class="icon ion-locked"></i>
       </ion-checkbox>
     </ion-slide>
@@ -73,13 +71,13 @@
       <div class="question">
         <h2>Which login accounts are important?</h2>
       </div>
-      <ion-checkbox ng-model="FacebookLogin">Facebook Login
+      <ion-checkbox ng-model="survey.FacebookLogin">Facebook Login
         <i class="icon ion-social-facebook"></i>
       </ion-checkbox>
-      <ion-checkbox ng-model="TwitterLogin">Twitter Login
+      <ion-checkbox ng-model="survey.TwitterLogin">Twitter Login
         <i class="icon ion-social-twitter-outline"></i>
       </ion-checkbox>
-      <ion-checkbox ng-model="EmailLogin">Email Login
+      <ion-checkbox ng-model="survey.EmailLogin">Email Login
         <i class="icon ion-ios7-locked"></i>
       </ion-checkbox>
     </ion-slide>
@@ -90,8 +88,8 @@
       <div class="question">
         <h2>Which phone platform are you using?</h2>
       </div>
-      <ion-radio ng-model="iphone" ng-value="1">Iphone <i class="icon ion-social-android"></i></ion-radio>
-      <ion-radio ng-model="android" ng-value="0">Android <i class="icon ion-social-apple"></i></ion-radio>
+      <ion-radio ng-model="survey.phone" ng-value="0">Iphone <i class="icon ion-social-android"></i></ion-radio>
+      <ion-radio ng-model="survey.phone" ng-value="1">Android <i class="icon ion-social-apple"></i></ion-radio>
     </ion-slide>
     <ion-slide class="survey-slide">
       <div class="prompt">
@@ -100,10 +98,10 @@
       <div class="question">
         <h2>What events do you think we should tailor to?</h2>
       </div>
-      <ion-checkbox ng-model="Gamedays">Gamedays</ion-checkbox>
-      <ion-checkbox ng-model="Conferences">Conferences</ion-checkbox>
-      <ion-checkbox ng-model="Conventions">Conventions</ion-checkbox>
-      <ion-checkbox ng-model="OtherEvent">Other?</ion-checkbox>
+      <ion-checkbox ng-model="survey.Gamedays">Gamedays</ion-checkbox>
+      <ion-checkbox ng-model="survey.Conferences">Conferences</ion-checkbox>
+      <ion-checkbox ng-model="survey.Conventions">Conventions</ion-checkbox>
+      <ion-checkbox ng-model="survey.OtherEvent">Other?</ion-checkbox>
     </ion-slide>
     <ion-slide class="survey-slide">
       <div class="prompt">
@@ -112,9 +110,8 @@
       <div class="question">
         <h2>How does the app perform</h2>
       </div>
-      <ion-checkbox ng-model="messagesDownload">messages load fast?</ion-checkbox>
-      <ion-checkbox ng-model="siteDownload">app load fast?</ion-checkbox>
-      </div>
+      <ion-checkbox ng-model="survey.messagesDownload">messages load fast?</ion-checkbox>
+      <ion-checkbox ng-model="survey.siteDownload">app load fast?</ion-checkbox>
     </ion-slide>
     <ion-slide class="survey-slide">
       <div class="prompt">
@@ -123,10 +120,20 @@
       <div class="question">
         <h2>Would you see yourself using such an app as?</h2>
       </div>
-      <ion-checkbox ng-model="eventCoordinator">as a Event Coordinator</ion-checkbox>
-      <ion-checkbox ng-model="sportsFan">as a Sports Fan</ion-checkbox>
-      <ion-checkbox ng-model="attendee">as an event attendee</ion-checkbox>
+      <ion-checkbox ng-model="survey.eventCoordinator">as a Event Coordinator?</ion-checkbox>
+      <ion-checkbox ng-model="survey.sportsFan">as a Sports Fan?</ion-checkbox>
+      <ion-checkbox ng-model="survey.attendee">as an event attendee?</ion-checkbox>
+    </ion-slide>
+    <ion-slide class="survey-slide">
+      <div class="prompt">
+        <p></p>
       </div>
+      <div class="question">
+        <h2>Finally, do you have any comments?</h2>
+      </div>
+      <label for="comments">Comment:</label>
+      <textarea id="comments" ng-model="survey.comment" class="comment-area"></textarea>
+      <button class="button button-block button-positive" ng-click="complete()">Complete Survey</button>
     </ion-slide>
   </ion-slide-box>
 </ion-view>

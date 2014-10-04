@@ -2,43 +2,33 @@
 /*jshint unused:vars */
 angular.module('Bullet3.controllers', [])
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
+.controller('AppCtrl', function($scope, $ionicModal, $timeout,$state) {
   // Form data for the login modal
-  $scope.loginData = {};
+  //$scope.loginData = {};
   $scope.hideBackButton=true;
   $scope.searchOn=false;
   // Create the login modal that we will use later
-  $ionicModal.fromTemplateUrl('templates/login.html', {
-    scope: $scope
-  }).then(function(modal) {
-    $scope.modal = modal;
-  });
+  // $ionicModal.fromTemplateUrl('templates/login.html', {
+  //   scope: $scope,
+  //   focusFirstInput:true
+  // }).then(function(modal) {
+  //   $scope.loginModal = modal;
+  // });
+  // $scope.showLogin= function(){
+  //   $scope.loginModal.show();
+  // };
+  // // Triggered in the login modal to close it
+  // $scope.closeLogin = function() {
+  //   $scope.loginModal.hide();
+  // };
   $scope.searchToggle=function(bool){
     console.log('toggle');
     $scope.searchOn=bool;
   };
-  // Triggered in the login modal to close it
-  $scope.closeLogin = function() {
-    $scope.modal.hide();
-  };
-
-  // Open the login modal
-  $scope.login = function() {
-    $scope.modal.show();
-  };
-
-  // Perform the login action when the user submits the login form
-  $scope.doLogin = function() {
-    console.log('Doing login', $scope.loginData);
-
-    // Simulate a login delay. Remove this and replace with your login
-    // code if using a login system
-    $timeout(function() {
-      $scope.closeLogin();
-    }, 1000);
+  $scope.checkState=function(){
+    return $state.is('app.feed')||$state.is('app.topic');
   };
 })
-
 .controller('TopicCtrl', function(
   $scope, $stateParams,
   TopicService,CommentService,$ionicListDelegate,ENV, $ionicLoading) {
@@ -136,11 +126,15 @@ angular.module('Bullet3.controllers', [])
     $scope.slideIndex = index;
   };
 })
-.controller('SurveyCtrl',function($scope,$state,$ionicSlideBoxDelegate){
+.controller('SurveyCtrl',function($scope,$state,$ionicSlideBoxDelegate,SurveyService){
+  $scope.survey={};
+  $scope.slideIndex=0;
   $scope.complete = function() {
+    SurveyService.saveSurvey($scope.survey);
     $state.go('app.browse');
   };
   $scope.next = function() {
+    console.log('next');
     $ionicSlideBoxDelegate.next();
   };
   $scope.previous = function() {
