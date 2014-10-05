@@ -19,6 +19,20 @@ angular.module('Bullet3.services',[])
     }
   };
 })
+.factory('ApiService',function($http){
+  var uploadUrl='http://paulgruenbacher.com/bullet-feed/api/upload';
+  return{
+    uploadFileToUrl:function(file){
+      var fd = new FormData();
+      fd.append('image', file);
+      fd.append('author', 'authorID');
+      return $http.post(uploadUrl, fd, {
+        transformRequest: angular.identity,
+        headers: {'Content-Type': undefined}
+      });
+    }
+  };
+})
 .factory('TopicService',function($firebase,ENV){
   var _url=ENV.FB+'eventsList';
   var _ref=new Firebase(_url);

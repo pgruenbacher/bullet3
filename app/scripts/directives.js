@@ -28,6 +28,40 @@ angular.module('Bullet3.directives',[])
       }
     };
   })
+  .directive('ngFileSelect',function(){
+    return {
+      scope:{
+        method:'&ngFileSelect',
+        error:'='
+      },
+      link: function(scope,el,attrs){
+        var _validTypes = ['image/jpeg', 'image/jpg', 'image/gif', 'image/png'];
+        var methodHandler=scope.method();
+        el.bind('change', function(e){
+          var valid;
+          var file = (e.srcElement || e.target).files[0];
+          if(file.size<attrs.fileSize){
+            valid=true;
+          }else{
+            valid=false;
+            scope.error='file size too large, only '+Math.round(attrs.fileSize/1000)+'mb allowed';
+            scope.$apply();
+          }
+          for(var i=0; i<_validTypes.length;i++){
+            if(file.type.toLowerCase() ===_validTypes[i]&&valid!==false){
+              valid=true;
+              break;
+            }
+          }
+          console.log(scope.error,'y',valid);
+          if(valid){
+            var previewImage=attrs.previewImage;
+            methodHandler(file,previewImage);
+          }
+        });
+      }
+    };
+  })
   .directive('fadeBar', function($timeout) {
     return {
       restrict: 'E',

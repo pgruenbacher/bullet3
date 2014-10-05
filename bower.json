@@ -2,6 +2,7 @@
   "name": "Bullet3",
   "version": "0.0.0",
   "dependencies": {
+    "angular":"1.3.0-build.3343+sha.7cb01a8",
     "ionic": "v1.0.0-beta.13",
     "angularfire": "~0.8.2"
   },

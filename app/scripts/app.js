@@ -46,7 +46,6 @@ angular.module('Bullet3', [
       abstract: true,
       templateUrl: 'templates/menu.html',
       controller: 'AppCtrl'
-      
     })
     .state('app.account',{
       url:'/account',
@@ -67,6 +66,15 @@ angular.module('Bullet3', [
         user: ['simpleLogin', function(simpleLogin) {
           return simpleLogin.getUser();
         }]
+      }
+    })
+    .state('app.create',{
+      url:'/create',
+      views:{
+        'menuContent':{
+          templateUrl:'templates/create.html',
+          controller:'CreateCtrl'
+        }
       }
     })
     .state('app.search', {

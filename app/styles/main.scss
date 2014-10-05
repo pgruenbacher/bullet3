@@ -72,6 +72,16 @@ $defaultVoteColor:gray;
 .question{
 	text-align:left;
 }
+.upload-image-label{
+	.upload-image{
+		width: 100px;
+		height: 100px;
+	}
+	input{
+		display:none;
+	}
+}
+
 .event{
 	min-height: 100px;
 	.banner{

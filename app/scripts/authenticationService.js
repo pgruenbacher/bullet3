@@ -34,6 +34,9 @@ angular.module('AuthenticationService',[])
         case 'google':
           options={rememberMe:true};
           break;
+        case 'twitter':
+          options={rememberMe:true};
+          break;
       }
       return auth.$login(method,options);
     },

@@ -7,14 +7,20 @@
     </ion-nav-bar>
     <ion-nav-view name="menuContent" animation="slide-left-right"></ion-nav-view>
   </ion-pane>
-  <ion-side-menu side="left"  expose-aside-when="large">
-    <header class="bar bar-header bar-stable">
-      <h1 class="title">Left</h1>
-    </header>
+    <ion-side-menu side="left" expose-aside-when="large">
+      <ion-header-bar>
+      <h1 class="title">Menu</h1>
+      <div class="buttons">
+        <button class="button button-clear" menu-toggle="right">Admin</button>
+      </div>
+    </ion-header-bar>
     <ion-content class="has-header">
       <ion-list>
         <ion-item nav-clear class="item-icon-right" menu-close href="#/app/account">
-          Account <i class="icon icon-accesory ion-person"></i>
+          Account<i class="icon icon-accesory ion-person"></i>
+        </ion-item>
+        <ion-item nav-clear class="item-icon-right" menu-close>
+          <button class="button button-clear" menu-toggle="right">Admin</button>
         </ion-item>
         <ion-item nav-clear menu-close class="item-icon-right" ng-click="searchToggle(true)" ng-show="checkState()">
           Search <i class="icon icon-accesory ion-search"></i>
@@ -42,6 +48,18 @@
         </ion-item>
         <ion-item nav-clear menu-close href="#/intro">
           Intro
+        </ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-side-menu>
+  <ion-side-menu side="right">
+    <header class="bar bar-header bar-stable">
+      <h1 class="title">Right</h1>
+    </header>
+    <ion-content class="has-header">
+      <ion-list>
+        <ion-item nav-clear menu-close class="item-icon-right" href="#/app/create">
+          Create <i class="icon icon-accesory ion-hammer"></i>
         </ion-item>
       </ion-list>
     </ion-content>

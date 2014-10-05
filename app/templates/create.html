@@ -1,0 +1,16 @@
+<ion-view title="Create">
+  <ion-nav-buttons side="right">
+    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    <button menu-toggle="right" class="button button-icon icon ion-wrench"></button>
+  </ion-nav-buttons>
+  <ion-content class="has-header">
+    <ion-list>
+      File to upload to S3: 
+      <label class="upload-image-label">
+        <input name="image" type="file" ng-file-select="onFileSelect" preview-image="image1" file-size="100000" error="err">
+        <img class="upload-image" ng-src="{{image1}}"></img>
+      </label>
+      {{err}}
+    </ion-list>
+  </ion-content>
+</ion-view>

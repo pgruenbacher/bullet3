@@ -59,6 +59,37 @@ angular.module('Bullet3.controllers', [])
     }
   };
 })
+.controller('CreateCtrl',function($scope,$state,ApiService,$ionicLoading){
+  $scope.err='';
+  $scope.image1='http://paulgruenbacher.com/bullet-feed/images/1412470908placeholder-image.gif';
+  $scope.onFileSelect=function(file,previewImage){
+    var reader  = new FileReader();
+    reader.onloadend = function () {
+      $scope[previewImage] = reader.result;
+      $scope.$apply();
+    };
+    if (file) {
+      reader.readAsDataURL(file);
+    }
+    $scope.upload(file,previewImage);
+  };
+  $scope.upload=function(file,image){
+    console.log(file);
+    $ionicLoading.show({
+      template: 'Uploading...'
+    });
+    ApiService.uploadFileToUrl(file).then(function(response){
+      $ionicLoading.hide();
+      console.log(response);
+      if(response.status===200){
+        $scope[image]=response.data.response.localUrl;
+      }
+    },function(response){
+      $scope.err='Could not connect to database!';
+      $ionicLoading.hide();
+    });
+  };
+})
 .controller('BrowseCtrl',function($scope,$state,EventsService){
   $scope.events=EventsService.syncAll();
   $scope.enter=function(id){
