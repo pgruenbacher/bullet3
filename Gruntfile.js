@@ -180,7 +180,9 @@ module.exports = function (grunt) {
       app: {
         src: ['<%= yeoman.app %>/index.html'],
         ignorePath:  /\.\.\//,
-        exclude: [/mockfirebase/]
+        exclude: [/mockfirebase/,
+        /bower_components.bootstrap.dist.css.bootstrap.css/,
+        /bower_components.bootstrap.dist.js.bootstrap.js/]
       },
       sass: {
         src: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],

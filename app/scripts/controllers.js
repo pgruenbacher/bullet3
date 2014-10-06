@@ -59,19 +59,61 @@ angular.module('Bullet3.controllers', [])
     }
   };
 })
-.controller('CreateCtrl',function($scope,$state,ApiService,$ionicLoading){
-  $scope.err='';
-  $scope.image1='http://paulgruenbacher.com/bullet-feed/images/1412470908placeholder-image.gif';
+.controller('CreateCtrl',function($scope,$state,ApiService,$ionicLoading,$ionicModal,$ionicPopup){
+  $scope.eventForm={duration:{},coordinates:{}};
+  $scope.err1='';
+  $scope.err2='';
+  $scope.eventForm.imageLeft='http://paulgruenbacher.com/bullet-feed/images/1412517632imagePlaceholder.gif';
+  $scope.eventForm.imageRight='http://paulgruenbacher.com/bullet-feed/images/1412517632imagePlaceholder.gif';
   $scope.onFileSelect=function(file,previewImage){
     var reader  = new FileReader();
     reader.onloadend = function () {
-      $scope[previewImage] = reader.result;
+      $scope.eventForm[previewImage] = reader.result;
       $scope.$apply();
     };
     if (file) {
       reader.readAsDataURL(file);
     }
     $scope.upload(file,previewImage);
+  };
+  $ionicModal.fromTemplateUrl('templates/datePicker.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function(modal) {
+    $scope.dateModal = modal;
+  });
+  $scope.closeDate=function(){
+    $scope.dateModal.hide();
+  };
+  $scope.submitDate=function(key){
+    $scope.eventForm.duration[key] = $scope.tmp.newDate;
+    //$scope.dateModal.hide();
+    console.log(key,$scope.tmp.newDate);
+  };
+  $scope.selectDate = function(key) {
+    $scope.dateModal.show();
+    $scope.tmp={};
+    $scope.tmp.key=key;
+    $scope.tmp.newDate=$scope.eventForm.duration[key];
+  };
+  $ionicModal.fromTemplateUrl('templates/map.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function(modal) {
+    $scope.mapModal = modal;
+  });
+  $scope.setCoordinates=function(gm){
+    $scope.eventForm.coordinates={
+      latitude:gm.k,
+      longitude:gm.B
+    };
+    console.log(gm);
+  };
+  $scope.showMap=function(){
+    $scope.mapModal.show();
+  };
+  $scope.hideMap=function(){
+    $scope.mapModal.hide();
   };
   $scope.upload=function(file,image){
     console.log(file);
@@ -80,14 +122,17 @@ angular.module('Bullet3.controllers', [])
     });
     ApiService.uploadFileToUrl(file).then(function(response){
       $ionicLoading.hide();
-      console.log(response);
       if(response.status===200){
-        $scope[image]=response.data.response.localUrl;
+        $scope.eventForm[image]=response.data.response.localUrl;
+        console.log(image,$scope[image]);
       }
     },function(response){
       $scope.err='Could not connect to database!';
       $ionicLoading.hide();
     });
+  };
+  $scope.submitEvent=function(){
+    console.log($scope.eventForm);
   };
 })
 .controller('BrowseCtrl',function($scope,$state,EventsService){

@@ -39,12 +39,13 @@ angular.module('Bullet3.directives',[])
         var methodHandler=scope.method();
         el.bind('change', function(e){
           var valid;
+          scope.error='';
           var file = (e.srcElement || e.target).files[0];
           if(file.size<attrs.fileSize){
             valid=true;
           }else{
             valid=false;
-            scope.error='file size too large, only '+Math.round(attrs.fileSize/1000)+'mb allowed';
+            scope.error='file size too large, only '+Math.round(attrs.fileSize/1000)+'kb allowed';
             scope.$apply();
           }
           for(var i=0; i<_validTypes.length;i++){

@@ -1,0 +1,15 @@
+<div class="modal">
+  <ion-header-bar>
+    <h1 class="title">{{(tmp.newDate)?'Pick a Time':'Pick a Date'}}</h1>
+    <div class="buttons">
+      <button class="button button-clear" ng-click="closeDate()">Close</button>
+    </div>
+  </ion-header-bar>
+  <ion-content>
+		<datetimepicker ng-model="tmp.newDate"></datetimepicker>
+		<div class="buttons" style="text-align:center">
+			<button ng-click="closeDate()" class="button">Cancel</button>
+			<button ng-click="submitDate(tmp.key)" class="button button-positive">Submit</button>
+		</div>
+	</ion-content>
+</div>

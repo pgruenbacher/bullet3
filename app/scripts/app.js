@@ -13,11 +13,13 @@ angular.module('Bullet3', [
   'Bullet3.directives',
   'Bullet3.services',
   'Bullet3.filters',
+  'Bullet3.appMap',
   'firebase',
   'firebase.utils',
   'AuthenticationService',
   'Bullet3.accountControllers',
-  'stateSecurity'
+  'stateSecurity',
+  'ui.bootstrap.datetimepicker'
 ])
 
 .run(function($ionicPlatform) {

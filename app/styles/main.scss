@@ -73,14 +73,25 @@ $defaultVoteColor:gray;
 	text-align:left;
 }
 .upload-image-label{
+	cursor:pointer; 
 	.upload-image{
 		width: 100px;
 		height: 100px;
 	}
 	input{
-		display:none;
+		display:visible;
+		opacity:0;
+		position:absolute;
 	}
 }
+/*********Date Time picker *******/
+.datetimepicker{
+	td,th{
+		width:200px;
+		height:40px;
+	}
+}
+
 
 .event{
 	min-height: 100px;

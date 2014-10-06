@@ -5,12 +5,80 @@
   </ion-nav-buttons>
   <ion-content class="has-header">
     <ion-list>
-      File to upload to S3: 
-      <label class="upload-image-label">
-        <input name="image" type="file" ng-file-select="onFileSelect" preview-image="image1" file-size="100000" error="err">
-        <img class="upload-image" ng-src="{{image1}}"></img>
+      <form onclick="">
+      <label for="imageLeft" class="upload-image-label item item-input">
+        <span class="input-label">Left Image</span>
+        <img class="upload-image" ng-src="{{eventForm.imageLeft}}"></img>
+        <input id="imageLeft" name="imageLeft" type="file" ng-file-select="onFileSelect" preview-image="imageLeft" file-size="100000" error="err1">
       </label>
-      {{err}}
+      {{err1}}
+      
+      {{err2}}
+      <label for="imageRight" class="upload-image-label item item-input">
+        <span class="input-label">Right Image:</span>
+        <img class="upload-image" ng-src="{{eventForm.imageRight}}"></img>
+        <input id="imageRight" name="image" type="file" ng-file-select="onFileSelect" preview-image="imageRight" file-size="100000" error="err2">
+      </label>
+      <label class="item item-input">
+        <span class="input-label">Create Title:</span>
+        <input type="text" ng-model="eventForm.title"/>
+      </label>
+      <label class="item item-input">
+        <span class="input-label">Sub-title:</span>
+        <input type="text" ng-model="eventForm.subTitle"/>
+      </label>
+      <label class="item item-input" ng-click="selectDate('start')">
+        <span class="input-label">Start time</span>
+        {{eventForm.duration.start | dateTime}}
+      </label>
+      <label class="item item-input" ng-click="selectDate('end')">
+        <span class="input-label">End time</span>
+        {{eventForm.duration.end | dateTime}}
+      </label>
+      <label class="item item-input">
+        <span class="input-label">Location</span>
+        <input ng-model="eventForm.location" type="text"/>
+      </label>
+      <label class="item item-input" ng-click="showMap()">
+        <span class="input-label">Pick Coordinates<span>
+          <span>{{eventForm.coordinates.latitude | lat}}</span>
+          <span>{{eventForm.coordinates.longitude | lon}}</span>
+      </label>
+    </form>
+    <h1>Preview</h1>
+    <ion-item>
+        <div class="event" >
+          <div class="banner">
+            <div class="image">
+              <img width="100%" ng-src="{{eventForm.imageLeft}}">
+            </div>
+            <div class="headline">
+              <div class="title">
+                {{eventForm.title}}
+              </div>
+              <div class="sub-title">
+                {{eventForm.subTitle}}
+              </div>
+            </div>
+            <div class="image">
+              <img width="100%" ng-src="{{eventForm.imageRight}}">
+            </div>
+          </div>
+          <div class="parameters">
+            <p>Current # of Topics: 0</p>
+          </div>
+          <div class="context">
+            <div class="location">
+              {{eventForm.location}}
+            </div>
+            <div class="time">
+              {{eventForm.duration.start | dateTime}}-
+              {{eventForm.duration.end | time }}
+            </div>
+          </div>
+        </div>
+      </ion-item>
+      <button ng-click="submitEvent()" class="button button-block button-positive">Submit Event</button>
     </ion-list>
   </ion-content>
 </ion-view>

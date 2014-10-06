@@ -1,0 +1,23 @@
+<div class="modal" ng-controller="GpsCtrl">
+  <ion-header-bar>
+    <h1 class="title">Drag map to Location</h1>
+    <div class="buttons">
+      <button class="button button-clear" ng-click="hideMap()">Close</button>
+    </div>
+  </ion-header-bar>
+  <ion-content scroll="false">
+			<app-map style="height:400px;margin:2px;"
+			    center="basel"
+			    zoom="15"
+			    markers="whoiswhere"
+			    on-create="mapCreated(map)"
+			    center="someting"
+				> 
+			</app-map>
+	</ion-content>
+	<ion-footer-bar>
+		<div class="buttons">
+			<button class="button button-assertive" ng-click="getCenter()">Set position</button>
+		</div>
+	</ion-footer-bar>
+</div>
